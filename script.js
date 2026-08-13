@@ -52,22 +52,45 @@ const observer = new IntersectionObserver(
 revealTargets.forEach((el) => observer.observe(el));
 
 if (form && statusEl) {
-  form.addEventListener("submit", (event) => {
+  form.addEventListener("submit", async (event) => {
     event.preventDefault();
 
     const data = new FormData(form);
     const name = String(data.get("name") || "").trim();
     const phone = String(data.get("phone") || "").trim();
     const service = String(data.get("service") || "").trim();
+    const barber = String(data.get("barber") || "any").trim();
+    const comment = String(data.get("comment") || "").trim();
 
     if (!name || !phone || !service) {
       statusEl.textContent = "Заполните имя, телефон и услугу.";
       return;
     }
 
-    // Placeholder until Telegram bot webhook is connected.
-    console.info("Booking request (pending Telegram):", Object.fromEntries(data.entries()));
-    statusEl.textContent = "Заявка принята. Скоро подключим Telegram — пока сохраняем локально.";
-    form.reset();
+    const submitBtn = form.querySelector('button[type="submit"]');
+    if (submitBtn) submitBtn.disabled = true;
+    statusEl.textContent = "Отправляем заявку…";
+
+    try {
+      const response = await fetch("/api/book", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, phone, service, barber, comment }),
+      });
+
+      const result = await response.json().catch(() => ({}));
+
+      if (!response.ok || !result.ok) {
+        throw new Error(result.error || "Send failed");
+      }
+
+      statusEl.textContent = "Заявка отправлена. Мы скоро свяжемся с вами.";
+      form.reset();
+    } catch (error) {
+      console.error(error);
+      statusEl.textContent = "Не удалось отправить. Позвоните нам или попробуйте ещё раз.";
+    } finally {
+      if (submitBtn) submitBtn.disabled = false;
+    }
   });
 }
