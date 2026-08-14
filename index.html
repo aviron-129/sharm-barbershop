@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>SHARM — Барбершоп в Алмалыке</title>
-  <meta name="description" content="Мужской барбершоп SHARM в Алмалыке. Классические стрижки, fade, борода. Запись онлайн." />
+  <meta name="description" content="Мужской барбершоп SHARM в Алмалыке, ул. Амир Тимур 59. Мастер Отабек: классические стрижки, fade, борода. Запись онлайн, тел. +998 99 005 12 20." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -14,8 +14,9 @@
   <header class="site-header" id="top">
     <div class="header-inner">
       <a class="logo-mark" href="#top" aria-label="SHARM">
-        <span class="logo-crest">S</span>
-        <span class="logo-word">SHARM</span>
+        <img class="logo-image is-hidden" id="logo-image" alt="SHARM" />
+        <span class="logo-crest" id="logo-crest">S</span>
+        <span class="logo-word" id="logo-word">SHARM</span>
       </a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Меню">
         <span></span><span></span>
@@ -24,7 +25,7 @@
         <a href="#about">О нас</a>
         <a href="#services">Услуги</a>
         <a href="#works">Работы</a>
-        <a href="#team">Команда</a>
+        <a href="#team" id="nav-team">Мастер</a>
         <a href="#interior">Салон</a>
         <a href="#contact">Контакты</a>
         <a class="nav-cta" href="#book">Запись</a>
@@ -35,18 +36,174 @@
   <main>
     <section class="hero">
       <div class="hero-media" aria-hidden="true">
-        <img
-          src="images/hero.jpg"
-          alt=""
-          width="2000"
-          height="1333"
-        />
+        <picture>
+          <source
+            media="(max-width: 640px)"
+            type="image/avif"
+            sizes="100vw"
+            srcset="
+              images/hero/hero-portrait-480.avif   480w,
+              images/hero/hero-portrait-640.avif   640w,
+              images/hero/hero-portrait-720.avif   720w,
+              images/hero/hero-portrait-1080.avif 1080w
+            "
+          />
+          <source
+            media="(max-width: 640px)"
+            type="image/webp"
+            sizes="100vw"
+            srcset="
+              images/hero/hero-portrait-480.webp   480w,
+              images/hero/hero-portrait-640.webp   640w,
+              images/hero/hero-portrait-720.webp   720w,
+              images/hero/hero-portrait-1080.webp 1080w
+            "
+          />
+          <source
+            media="(max-width: 640px)"
+            type="image/jpeg"
+            sizes="100vw"
+            srcset="
+              images/hero/hero-portrait-480.jpg   480w,
+              images/hero/hero-portrait-640.jpg   640w,
+              images/hero/hero-portrait-720.jpg   720w,
+              images/hero/hero-portrait-1080.jpg 1080w
+            "
+          />
+
+          <source
+            media="(max-width: 1024px) and (orientation: portrait)"
+            type="image/avif"
+            sizes="100vw"
+            srcset="
+              images/hero/hero-square-640.avif   640w,
+              images/hero/hero-square-900.avif   900w,
+              images/hero/hero-square-1200.avif 1200w
+            "
+          />
+          <source
+            media="(max-width: 1024px) and (orientation: portrait)"
+            type="image/webp"
+            sizes="100vw"
+            srcset="
+              images/hero/hero-square-640.webp   640w,
+              images/hero/hero-square-900.webp   900w,
+              images/hero/hero-square-1200.webp 1200w
+            "
+          />
+          <source
+            media="(max-width: 1024px) and (orientation: portrait)"
+            type="image/jpeg"
+            sizes="100vw"
+            srcset="
+              images/hero/hero-square-640.jpg   640w,
+              images/hero/hero-square-900.jpg   900w,
+              images/hero/hero-square-1200.jpg 1200w
+            "
+          />
+
+          <source
+            media="(max-width: 1024px)"
+            type="image/avif"
+            sizes="100vw"
+            srcset="
+              images/hero/hero-landscape-768.avif   768w,
+              images/hero/hero-landscape-1024.avif 1024w,
+              images/hero/hero-landscape-1440.avif 1440w
+            "
+          />
+          <source
+            media="(max-width: 1024px)"
+            type="image/webp"
+            sizes="100vw"
+            srcset="
+              images/hero/hero-landscape-768.webp   768w,
+              images/hero/hero-landscape-1024.webp 1024w,
+              images/hero/hero-landscape-1440.webp 1440w
+            "
+          />
+          <source
+            media="(max-width: 1024px)"
+            type="image/jpeg"
+            sizes="100vw"
+            srcset="
+              images/hero/hero-landscape-768.jpg   768w,
+              images/hero/hero-landscape-1024.jpg 1024w,
+              images/hero/hero-landscape-1440.jpg 1440w
+            "
+          />
+
+          <source
+            media="(max-width: 1600px)"
+            type="image/avif"
+            sizes="100vw"
+            srcset="
+              images/hero/hero-wide-1024.avif 1024w,
+              images/hero/hero-wide-1440.avif 1440w,
+              images/hero/hero-wide-1920.avif 1920w
+            "
+          />
+          <source
+            media="(max-width: 1600px)"
+            type="image/webp"
+            sizes="100vw"
+            srcset="
+              images/hero/hero-wide-1024.webp 1024w,
+              images/hero/hero-wide-1440.webp 1440w,
+              images/hero/hero-wide-1920.webp 1920w
+            "
+          />
+          <source
+            media="(max-width: 1600px)"
+            type="image/jpeg"
+            sizes="100vw"
+            srcset="
+              images/hero/hero-wide-1024.jpg 1024w,
+              images/hero/hero-wide-1440.jpg 1440w,
+              images/hero/hero-wide-1920.jpg 1920w
+            "
+          />
+
+          <source
+            type="image/avif"
+            sizes="100vw"
+            srcset="
+              images/hero/hero-ultrawide-1440.avif 1440w,
+              images/hero/hero-ultrawide-1920.avif 1920w,
+              images/hero/hero-ultrawide-2400.avif 2400w
+            "
+          />
+          <source
+            type="image/webp"
+            sizes="100vw"
+            srcset="
+              images/hero/hero-ultrawide-1440.webp 1440w,
+              images/hero/hero-ultrawide-1920.webp 1920w,
+              images/hero/hero-ultrawide-2400.webp 2400w
+            "
+          />
+
+          <img
+            src="images/hero/hero-wide-1440.jpg"
+            srcset="
+              images/hero/hero-ultrawide-1440.jpg 1440w,
+              images/hero/hero-ultrawide-1920.jpg 1920w,
+              images/hero/hero-ultrawide-2400.jpg 2400w
+            "
+            sizes="100vw"
+            alt=""
+            width="1440"
+            height="810"
+            fetchpriority="high"
+            decoding="async"
+          />
+        </picture>
       </div>
       <div class="hero-veil"></div>
       <div class="hero-content">
-        <p class="hero-eyebrow">Алмалык · мужской барбершоп</p>
-        <h1 class="hero-brand">SHARM</h1>
-        <p class="hero-lead">Классическая стрижка. Точный fade. Характер без лишнего шума.</p>
+        <p class="hero-eyebrow" id="hero-eyebrow">Алмалык · мужской барбершоп</p>
+        <h1 class="hero-brand" id="hero-brand">SHARM</h1>
+        <p class="hero-lead" id="hero-lead">Классическая стрижка. Точный fade. Характер без лишнего шума.</p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="#book">Записаться</a>
           <a class="btn btn-ghost" href="#works">Смотреть работы</a>
@@ -58,21 +215,21 @@
       <div class="container narrow">
         <h2>Мужской барбершоп в Алмалыке</h2>
         <p class="lead">
-          SHARM — место для тех, кто ценит чистую форму, спокойную атмосферу и мастеров,
-          которые слышат, что нужно. Без суеты: пришёл, подстригся, вышел собранным.
+          SHARM — место для тех, кто ценит чистую форму, спокойную атмосферу и мастера,
+          который слышит, что нужно. Без суеты: пришёл, подстригся, вышел собранным.
         </p>
         <div class="about-meta">
           <div>
             <span class="meta-label">Часы работы</span>
-            <strong>Ежедневно 10:00 – 20:00</strong>
+            <strong id="about-hours">Ежедневно 10:00 – 20:00</strong>
           </div>
           <div>
-            <span class="meta-label">Город</span>
-            <strong>Алмалык, Узбекистан</strong>
+            <span class="meta-label">Адрес</span>
+            <strong id="about-address">Алмалык, ул. Амир Тимур, 59</strong>
           </div>
           <div>
-            <span class="meta-label">Маршрут</span>
-            <a class="text-link" href="https://share.google/rlUNrPFdZWHVRSbtP" target="_blank" rel="noopener">Открыть в Google Maps</a>
+            <span class="meta-label">Телефон</span>
+            <strong><a class="text-link" id="about-phone" href="tel:+998990051220">+998 99 005 12 20</a></strong>
           </div>
         </div>
       </div>
@@ -84,39 +241,38 @@
           <h2>Услуги</h2>
           <p>Прозрачный прайс. Без «уточняйте по телефону».</p>
         </div>
-        <ul class="price-list">
+        <ul class="price-list" id="price-list">
           <li>
             <span class="service-name">Мужская стрижка</span>
             <span class="service-dots" aria-hidden="true"></span>
-            <span class="service-meta">45 мин · от 80 000 сум</span>
-          </li>
-          <li>
-            <span class="service-name">Fade / машинка + ножницы</span>
-            <span class="service-dots" aria-hidden="true"></span>
-            <span class="service-meta">50 мин · от 90 000 сум</span>
-          </li>
-          <li>
-            <span class="service-name">Борода / контур</span>
-            <span class="service-dots" aria-hidden="true"></span>
-            <span class="service-meta">25 мин · от 50 000 сум</span>
-          </li>
-          <li>
-            <span class="service-name">Стрижка + борода</span>
-            <span class="service-dots" aria-hidden="true"></span>
-            <span class="service-meta">70 мин · от 120 000 сум</span>
+            <span class="service-meta">40 000 сум</span>
           </li>
           <li>
             <span class="service-name">Детская стрижка</span>
             <span class="service-dots" aria-hidden="true"></span>
-            <span class="service-meta">30 мин · от 60 000 сум</span>
+            <span class="service-meta">30 000 сум</span>
           </li>
           <li>
-            <span class="service-name">Укладка / стайлинг</span>
+            <span class="service-name">Стрижка + борода</span>
             <span class="service-dots" aria-hidden="true"></span>
-            <span class="service-meta">15 мин · от 30 000 сум</span>
+            <span class="service-meta">60 000 сум</span>
+          </li>
+          <li>
+            <span class="service-name">Стрижка + борода + укладка</span>
+            <span class="service-dots" aria-hidden="true"></span>
+            <span class="service-meta">80 000 сум</span>
+          </li>
+          <li>
+            <span class="service-name">Свадебная укладка</span>
+            <span class="service-dots" aria-hidden="true"></span>
+            <span class="service-meta">от 100 000 сум</span>
+          </li>
+          <li>
+            <span class="service-name">Окантовка</span>
+            <span class="service-dots" aria-hidden="true"></span>
+            <span class="service-meta">20 000 сум</span>
           </li>
         </ul>
-        <p class="price-note">Цены ориентировочные — уточним при записи. Стоковые фото временно, заменим на ваши.</p>
       </div>
     </section>
 
@@ -126,70 +282,78 @@
           <h2>Примеры работ</h2>
           <p>Форма, линия, текстура — то, за чем приходят повторно.</p>
         </div>
-        <div class="works-grid">
-          <figure class="work-item">
-            <img src="images/work-01.jpg" alt="Мужская стрижка fade" width="900" height="1100" loading="lazy" />
-            <figcaption>Skin fade</figcaption>
+        <div class="works-grid" id="works-grid">
+          <figure class="work-item" data-gallery="mens-cut" tabindex="0" role="button" aria-label="Открыть примеры: Мужская стрижка">
+            <img src="images/portfolio/mens-cut/01-thumb.webp" alt="Мужская стрижка" width="640" height="800" loading="lazy" />
+            <figcaption><span>Мужская стрижка</span><small>5 работ →</small></figcaption>
           </figure>
-          <figure class="work-item">
-            <img src="images/work-02.jpg" alt="Классическая мужская стрижка" width="900" height="1100" loading="lazy" />
-            <figcaption>Classic cut</figcaption>
+          <figure class="work-item" data-gallery="kids-cut" tabindex="0" role="button" aria-label="Открыть примеры: Детская стрижка">
+            <img src="images/portfolio/kids-cut/01-thumb.webp" alt="Детская стрижка" width="640" height="800" loading="lazy" />
+            <figcaption><span>Детская стрижка</span><small>3 работы →</small></figcaption>
           </figure>
-          <figure class="work-item">
-            <img src="images/work-03.jpg" alt="Стрижка и уход за бородой" width="900" height="1100" loading="lazy" />
-            <figcaption>Cut &amp; beard</figcaption>
+          <figure class="work-item" data-gallery="cut-beard" tabindex="0" role="button" aria-label="Открыть примеры: Стрижка + борода">
+            <img src="images/portfolio/cut-beard/01-thumb.webp" alt="Стрижка + борода" width="640" height="800" loading="lazy" />
+            <figcaption><span>Стрижка + борода</span><small>4 работы →</small></figcaption>
           </figure>
-          <figure class="work-item">
-            <img src="images/work-04.jpg" alt="Мужская текстурная стрижка" width="900" height="1100" loading="lazy" />
-            <figcaption>Texture crop</figcaption>
+          <figure class="work-item" data-gallery="cut-beard-style" tabindex="0" role="button" aria-label="Открыть примеры: Стрижка + борода + укладка">
+            <img src="images/portfolio/cut-beard-style/01-thumb.webp" alt="Стрижка + борода + укладка" width="640" height="800" loading="lazy" />
+            <figcaption><span>Стрижка + борода + укладка</span><small>3 работы →</small></figcaption>
           </figure>
-          <figure class="work-item">
-            <img src="images/work-05.jpg" alt="Мужская укладка" width="900" height="1100" loading="lazy" />
-            <figcaption>Styled finish</figcaption>
+          <figure class="work-item" data-gallery="wedding-style" tabindex="0" role="button" aria-label="Открыть примеры: Свадебная укладка">
+            <img src="images/portfolio/wedding-style/01-thumb.webp" alt="Свадебная укладка" width="640" height="800" loading="lazy" />
+            <figcaption><span>Свадебная укладка</span><small>2 работы →</small></figcaption>
           </figure>
-          <figure class="work-item">
-            <img src="images/work-06.jpg" alt="Работа с бородой" width="900" height="1100" loading="lazy" />
-            <figcaption>Beard line</figcaption>
+          <figure class="work-item" data-gallery="edging" tabindex="0" role="button" aria-label="Открыть примеры: Окантовка">
+            <img src="images/portfolio/edging/01-thumb.webp" alt="Окантовка" width="640" height="800" loading="lazy" />
+            <figcaption><span>Окантовка</span><small>2 работы →</small></figcaption>
           </figure>
         </div>
       </div>
     </section>
 
+    <dialog class="gallery-dialog" id="gallery-dialog" aria-labelledby="gallery-title">
+      <div class="gallery-shell">
+        <header class="gallery-header">
+          <div>
+            <span class="gallery-eyebrow">Примеры работ</span>
+            <h2 id="gallery-title">Мужская стрижка</h2>
+          </div>
+          <button class="gallery-close" type="button" aria-label="Закрыть галерею">×</button>
+        </header>
+        <div class="gallery-images" id="gallery-images"></div>
+      </div>
+    </dialog>
+
     <section class="section team" id="team">
       <div class="container">
         <div class="section-head">
-          <h2>Команда</h2>
-          <p>Четыре мастера. Выбирайте по стилю — или доверьтесь свободным окнам.</p>
+          <h2 id="team-title">Мастер</h2>
+          <p id="team-lead">Один мастер — один стандарт качества. Каждая работа под личным контролем.</p>
         </div>
-        <div class="team-grid">
-          <article class="team-card">
-            <div class="team-photo">
-              <img src="images/team-01.jpg" alt="Мастер Али" width="700" height="850" loading="lazy" />
+        <div id="masters-root">
+        <article class="master-card">
+          <div class="master-photo">
+            <img src="images/team-01.jpg" alt="Барбер Отабек" width="700" height="850" loading="lazy" />
+          </div>
+          <div class="master-info">
+            <span class="meta-label">Барбер SHARM</span>
+            <h3>Отабек</h3>
+            <p>
+              Классические мужские стрижки, точный fade, оформление бороды и контура,
+              детские стрижки и укладка под событие. Работает с формой головы и типом волос,
+              а не «как у всех».
+            </p>
+            <ul class="master-facts">
+              <li><span>Стрижки</span><strong>fade · классика · crop</strong></li>
+              <li><span>Борода</span><strong>контур · hot towel</strong></li>
+              <li><span>Приём</span><strong>ежедневно 10:00 – 20:00</strong></li>
+            </ul>
+            <div class="master-actions">
+              <a class="btn btn-primary" href="#book">Записаться к Отабеку</a>
+              <a class="btn btn-outline" href="tel:+998990051220">+998 99 005 12 20</a>
             </div>
-            <h3>Али</h3>
-            <p>Старший барбер · fade, классика</p>
-          </article>
-          <article class="team-card">
-            <div class="team-photo">
-              <img src="images/team-02.jpg" alt="Мастер Дамир" width="700" height="850" loading="lazy" />
-            </div>
-            <h3>Дамир</h3>
-            <p>Барбер · текстура, современный crop</p>
-          </article>
-          <article class="team-card">
-            <div class="team-photo">
-              <img src="images/team-03.jpg" alt="Мастер Рустам" width="700" height="850" loading="lazy" />
-            </div>
-            <h3>Рустам</h3>
-            <p>Барбер · борода, контур, hot towel</p>
-          </article>
-          <article class="team-card">
-            <div class="team-photo">
-              <img src="images/team-04.jpg" alt="Мастер Жасур" width="700" height="850" loading="lazy" />
-            </div>
-            <h3>Жасур</h3>
-            <p>Барбер · детские и семейные стрижки</p>
-          </article>
+          </div>
+        </article>
         </div>
       </div>
     </section>
@@ -200,7 +364,7 @@
           <h2>Внутри салона</h2>
           <p>Тёплая атмосфера, кресла, зеркала — место, куда хочется возвращаться.</p>
         </div>
-        <div class="interior-grid">
+        <div class="interior-grid" id="interior-grid">
           <figure class="interior-main">
             <img
               src="images/interior-01.jpg"
@@ -247,26 +411,24 @@
             <span>Телефон</span>
             <input type="tel" name="phone" required autocomplete="tel" placeholder="+998 __ ___ __ __" />
           </label>
-          <label>
+          <label class="full">
             <span>Услуга</span>
-            <select name="service" required>
+            <select name="service" id="service-select" required>
               <option value="" disabled selected>Выберите услугу</option>
               <option>Мужская стрижка</option>
-              <option>Fade</option>
-              <option>Борода</option>
-              <option>Стрижка + борода</option>
               <option>Детская стрижка</option>
+              <option>Стрижка + борода</option>
+              <option>Стрижка + борода + укладка</option>
+              <option>Свадебная укладка</option>
+              <option>Окантовка</option>
             </select>
           </label>
-          <label>
-            <span>Мастер</span>
-            <select name="barber">
-              <option value="any">Любой свободный</option>
-              <option>Али</option>
-              <option>Дамир</option>
-              <option>Рустам</option>
-              <option>Жасур</option>
-            </select>
+          <div id="barber-field">
+            <input type="hidden" name="barber" value="Отабек" />
+          </div>
+          <label class="hp" aria-hidden="true">
+            <span>Сайт</span>
+            <input type="text" name="website" tabindex="-1" autocomplete="off" />
           </label>
           <label class="full">
             <span>Комментарий</span>
@@ -282,32 +444,35 @@
       <div class="container">
         <div class="section-head">
           <h2>Контакты и карта</h2>
-          <p>Точка на карте — официальная метка SHARM в Google Maps.</p>
+          <p>Мы в центре Алмалыка — на улице Амир Тимур, 59.</p>
         </div>
         <div class="contact-layout">
           <div class="contact-info">
             <div>
               <span class="meta-label">Адрес</span>
-              <strong>SHARM · Алмалык</strong>
-              <p class="muted">Точный pin на карте по вашей ссылке. Пришлите улицу текстом — подставим в блок.</p>
+              <strong id="contact-address">Алмалык, ул. Амир Тимур, 59</strong>
             </div>
             <div>
               <span class="meta-label">Часы</span>
-              <strong>10:00 – 20:00 · без выходных</strong>
+              <strong id="contact-hours">10:00 – 20:00 · без выходных</strong>
+            </div>
+            <div>
+              <span class="meta-label">Мастер</span>
+              <strong id="contact-master">Отабек</strong>
             </div>
             <div>
               <span class="meta-label">Связь</span>
-              <strong><a href="tel:+998900000000">+998 90 000 00 00</a></strong>
-              <p class="muted">Номер-заглушка — заменим на ваш.</p>
+              <strong><a id="contact-phone" href="tel:+998990051220">+998 99 005 12 20</a></strong>
             </div>
-            <a class="btn btn-primary" href="https://share.google/rlUNrPFdZWHVRSbtP" target="_blank" rel="noopener">Открыть в Google Maps</a>
+            <a class="btn btn-primary" id="contact-map-link" href="https://share.google/rlUNrPFdZWHVRSbtP" target="_blank" rel="noopener">Открыть в Google Maps</a>
           </div>
           <div class="map-wrap">
             <iframe
-              title="SHARM на карте"
+              id="map-frame"
+              title="SHARM на карте — Алмалык, Амир Тимур 59"
               loading="lazy"
               referrerpolicy="no-referrer-when-downgrade"
-              src="https://maps.google.com/maps?q=SHARM+Almalyk+Uzbekistan&hl=ru&z=16&output=embed"
+              src="https://maps.google.com/maps?q=Amir%20Temur%2059%2C%20Olmaliq%2C%20Tashkent%20Region%2C%20Uzbekistan&hl=ru&z=17&output=embed"
               allowfullscreen
             ></iframe>
           </div>
@@ -321,14 +486,18 @@
       <div class="footer-brand">
         <span class="logo-crest">S</span>
         <div>
-          <strong>SHARM</strong>
-          <span>Барбершоп · Алмалык</span>
+          <strong id="footer-brand">SHARM</strong>
+          <span id="footer-address">Барбершоп · Алмалык, ул. Амир Тимур, 59</span>
         </div>
       </div>
+      <p class="footer-contact"><a id="footer-phone" href="tel:+998990051220">+998 99 005 12 20</a> · <span id="footer-master">мастер Отабек</span></p>
       <p>© <span id="year"></span> SHARM. Все права защищены.</p>
     </div>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/config.js"></script>
+  <script src="js/shared.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

@@ -6,3 +6,9 @@ Thumbs.db
 *.log
 .vercel
 node_modules/
+ADMIN_LOGIN.txt
+supabase/.temp/
+
+# Local source photos; optimized website assets live in images/hero and images/portfolio
+images/`Portfolio/
+images/Внутрь салона/

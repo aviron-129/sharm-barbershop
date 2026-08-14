@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SHARM — Админка</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+  <div id="login-screen" class="login-screen">
+    <form id="login-form" class="login-card" novalidate>
+      <span class="eyebrow">SHARM</span>
+      <h1>Вход в админку</h1>
+      <p>Только владелец салона. Email и пароль из Supabase Auth.</p>
+      <label>
+        <span>Email</span>
+        <input type="email" name="email" autocomplete="username" required />
+      </label>
+      <label>
+        <span>Пароль</span>
+        <input type="password" name="password" autocomplete="current-password" required />
+      </label>
+      <button class="btn btn-primary" type="submit">Войти</button>
+      <p id="login-status" class="status" role="status"></p>
+    </form>
+  </div>
+
+  <div id="app" class="app is-hidden">
+    <aside class="sidebar">
+      <div class="brand">
+        <span class="crest">S</span>
+        <div>
+          <strong>SHARM</strong>
+          <small>Админ-панель</small>
+        </div>
+      </div>
+      <nav class="side-nav" id="side-nav">
+        <button type="button" data-panel="settings" class="is-active">Основное</button>
+        <button type="button" data-panel="services">Услуги и цены</button>
+        <button type="button" data-panel="masters">Мастера</button>
+        <button type="button" data-panel="portfolio">Портфолио</button>
+        <button type="button" data-panel="interior">Интерьер</button>
+        <button type="button" data-panel="bookings">Заявки</button>
+      </nav>
+      <button class="btn btn-ghost" id="logout-btn" type="button">Выйти</button>
+    </aside>
+
+    <div class="workspace">
+      <header class="topbar">
+        <button class="nav-toggle" id="menu-toggle" type="button" aria-label="Меню">☰</button>
+        <h2 id="panel-title">Основное</h2>
+        <p id="app-status" class="status" role="status"></p>
+      </header>
+
+      <section class="panel is-active" id="panel-settings">
+        <form id="settings-form" class="card form-grid">
+          <label>
+            <span>Название</span>
+            <input name="brand_name" maxlength="40" required />
+          </label>
+          <label>
+            <span>Телефон</span>
+            <input name="phone" maxlength="40" />
+          </label>
+          <label class="full">
+            <span>Адрес</span>
+            <input name="address" maxlength="160" />
+          </label>
+          <label>
+            <span>Часы (коротко)</span>
+            <input name="hours_short" maxlength="80" />
+          </label>
+          <label>
+            <span>Часы (полностью)</span>
+            <input name="hours_full" maxlength="80" />
+          </label>
+          <label class="full">
+            <span>Ссылка на Google Maps</span>
+            <input name="map_url" maxlength="300" />
+          </label>
+          <label class="full">
+            <span>Запрос для карты</span>
+            <input name="map_query" maxlength="200" placeholder="Amir Temur 59, Olmaliq" />
+          </label>
+          <label>
+            <span>Надзаголовок на главной</span>
+            <input name="hero_eyebrow" maxlength="80" />
+          </label>
+          <label>
+            <span>Заголовок на главной</span>
+            <input name="hero_title" maxlength="40" />
+          </label>
+          <label class="full">
+            <span>Текст на главной</span>
+            <textarea name="hero_lead" rows="2" maxlength="240"></textarea>
+          </label>
+          <label class="full">
+            <span>SEO title</span>
+            <input name="seo_title" maxlength="80" />
+          </label>
+          <label class="full">
+            <span>SEO description</span>
+            <textarea name="seo_description" rows="2" maxlength="240"></textarea>
+          </label>
+          <div class="media-row full">
+            <label class="file-field">
+              <span>Логотип (PNG, WebP, SVG)</span>
+              <input type="file" id="logo-file" accept="image/png,image/webp,image/svg+xml" />
+              <img id="logo-preview" class="preview-logo" alt="" />
+            </label>
+            <label class="file-field">
+              <span>Главное фото</span>
+              <input type="file" id="hero-file" accept="image/*" />
+              <img id="hero-preview" class="preview-wide" alt="" />
+            </label>
+          </div>
+          <button class="btn btn-primary" type="submit">Сохранить основное</button>
+        </form>
+      </section>
+
+      <section class="panel" id="panel-services">
+        <form id="service-form" class="card form-grid compact">
+          <input type="hidden" name="id" />
+          <label>
+            <span>Услуга</span>
+            <input name="name" required maxlength="80" />
+          </label>
+          <label>
+            <span>Цена</span>
+            <input name="price" required maxlength="40" placeholder="40 000 сум" />
+          </label>
+          <label class="check">
+            <input type="checkbox" name="is_active" checked />
+            <span>Показывать на сайте</span>
+          </label>
+          <button class="btn btn-primary" type="submit">Сохранить услугу</button>
+        </form>
+        <div id="services-list" class="stack"></div>
+      </section>
+
+      <section class="panel" id="panel-masters">
+        <form id="master-form" class="card form-grid">
+          <input type="hidden" name="id" />
+          <label>
+            <span>Имя</span>
+            <input name="name" required maxlength="80" />
+          </label>
+          <label>
+            <span>Роль</span>
+            <input name="role" maxlength="80" placeholder="Барбер SHARM" />
+          </label>
+          <label class="full">
+            <span>Описание</span>
+            <textarea name="bio" rows="4" maxlength="800"></textarea>
+          </label>
+          <label>
+            <span>Специализации</span>
+            <input name="specialties" maxlength="240" placeholder="Стрижки: fade · классика | Борода: контур" />
+          </label>
+          <label>
+            <span>График</span>
+            <input name="hours" maxlength="80" placeholder="ежедневно 10:00 – 20:00" />
+          </label>
+          <label class="file-field">
+            <span>Фото</span>
+            <input type="file" id="master-file" accept="image/*" />
+          </label>
+          <label class="check">
+            <input type="checkbox" name="is_active" checked />
+            <span>Показывать на сайте</span>
+          </label>
+          <img id="master-preview" class="preview-portrait" alt="" />
+          <button class="btn btn-primary" type="submit">Сохранить мастера</button>
+        </form>
+        <div id="masters-list" class="stack"></div>
+      </section>
+
+      <section class="panel" id="panel-portfolio">
+        <form id="category-form" class="card form-grid compact">
+          <input type="hidden" name="id" />
+          <label>
+            <span>Категория</span>
+            <input name="title" required maxlength="80" />
+          </label>
+          <label>
+            <span>Слаг</span>
+            <input name="slug" maxlength="48" placeholder="mens-cut" />
+          </label>
+          <label class="check">
+            <input type="checkbox" name="is_active" checked />
+            <span>Показывать</span>
+          </label>
+          <button class="btn btn-primary" type="submit">Сохранить категорию</button>
+        </form>
+        <div id="portfolio-list" class="stack"></div>
+      </section>
+
+      <section class="panel" id="panel-interior">
+        <form id="interior-form" class="card form-grid compact">
+          <label class="full">
+            <span>Подпись</span>
+            <input name="alt" maxlength="120" placeholder="Интерьер барбершопа SHARM" />
+          </label>
+          <label class="file-field">
+            <span>Фото салона</span>
+            <input type="file" id="interior-file" accept="image/*" required />
+          </label>
+          <label class="check">
+            <input type="checkbox" name="is_featured" />
+            <span>Главное фото блока</span>
+          </label>
+          <button class="btn btn-primary" type="submit">Добавить фото</button>
+        </form>
+        <div id="interior-list" class="cards-grid"></div>
+      </section>
+
+      <section class="panel" id="panel-bookings">
+        <div class="toolbar">
+          <input id="booking-search" type="search" placeholder="Поиск по имени или телефону" />
+          <select id="booking-filter">
+            <option value="">Все статусы</option>
+            <option value="new">Новая</option>
+            <option value="contacted">Связались</option>
+            <option value="confirmed">Подтверждена</option>
+            <option value="done">Выполнена</option>
+            <option value="cancelled">Отменена</option>
+          </select>
+        </div>
+        <div id="bookings-list" class="stack"></div>
+      </section>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../js/config.js"></script>
+  <script src="../js/shared.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>
