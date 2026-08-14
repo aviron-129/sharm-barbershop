@@ -405,6 +405,13 @@ if (form && statusEl) {
     const masterId = String(data.get("masterId") || data.get("barber") || "any").trim();
     const comment = String(data.get("comment") || "").trim();
     const website = String(data.get("website") || "").trim();
+    const serviceSelect = form.querySelector('[name="service"]');
+    const masterSelect = form.querySelector('[name="masterId"]');
+    const serviceName = serviceSelect?.selectedOptions?.[0]?.textContent?.trim() || "";
+    const masterName =
+      !masterId || masterId === "any"
+        ? "Любой свободный"
+        : masterSelect?.selectedOptions?.[0]?.textContent?.trim() || "Мастер";
 
     if (!name || !phone || !serviceId) {
       statusEl.textContent = "Заполните имя, телефон и услугу.";
@@ -423,9 +430,9 @@ if (form && statusEl) {
           name,
           phone,
           serviceId,
-          service: serviceId,
+          service: serviceName,
           masterId,
-          barber: masterId,
+          barber: masterName,
           comment,
           website,
         }),

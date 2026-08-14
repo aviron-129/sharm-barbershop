@@ -282,12 +282,32 @@ function renderInterior() {
     .join("") || `<p class="muted">Загрузите фото салона.</p>`;
 }
 
+const looksLikeId = (value) => /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(String(value || "").trim());
+
+function bookingServiceLabel(booking) {
+  const fromList = services.find((item) => item.id === booking.service_id)?.name;
+  if (fromList) return fromList;
+  if (booking.service_name && !looksLikeId(booking.service_name)) return booking.service_name;
+  return "Услуга не указана";
+}
+
+function bookingMasterLabel(booking) {
+  const fromList = masters.find((item) => item.id === booking.master_id)?.name;
+  if (fromList) return fromList;
+  if (booking.master_name && !looksLikeId(booking.master_name) && booking.master_name !== "any") {
+    return booking.master_name;
+  }
+  return "Любой свободный";
+}
+
 function renderBookings() {
   const root = document.querySelector("#bookings-list");
   const query = String(document.querySelector("#booking-search")?.value || "").trim().toLowerCase();
   const status = String(document.querySelector("#booking-filter")?.value || "");
   const list = bookings.filter((booking) => {
-    const hay = `${booking.name} ${booking.phone} ${booking.service_name || ""}`.toLowerCase();
+    const serviceLabel = bookingServiceLabel(booking);
+    const masterLabel = bookingMasterLabel(booking);
+    const hay = `${booking.name} ${booking.phone} ${serviceLabel} ${masterLabel}`.toLowerCase();
     const matchesQuery = !query || hay.includes(query);
     const matchesStatus = !status || booking.status === status;
     return matchesQuery && matchesStatus;
@@ -308,7 +328,7 @@ function renderBookings() {
             </div>
             <span class="badge">${created}</span>
           </div>
-          <p>${Sharm.esc(booking.service_name || "Услуга не указана")} · ${Sharm.esc(booking.master_name || "любой мастер")}</p>
+          <p>${Sharm.esc(bookingServiceLabel(booking))} · ${Sharm.esc(bookingMasterLabel(booking))}</p>
           ${booking.comment ? `<p>${Sharm.esc(booking.comment)}</p>` : ""}
           <label>
             <span>Статус</span>
